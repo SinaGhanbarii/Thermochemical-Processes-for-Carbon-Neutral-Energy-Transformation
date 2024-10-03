@@ -1,0 +1,63 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary PlugFlowReactor
+{
+		@KineticsPreProcessor	POLIMI_C1C3;
+		
+		@Type			Isothermal;
+		
+		@InletStatus          	inlet-mixture;
+		
+		@Length			43 cm;
+
+		@Diameter		8 mm;
+		
+		@ConstantPressure		true;
+		
+		@Velocity		0.033 m/s;
+
+//		@ParametricAnalysis		parametric-analysis;
+
+		@Options			output-options ;
+}
+
+Dictionary POLIMI_C1C3
+{
+		@Kinetics	kinetic-mechanism/POLIMI_C1C3HT_1412.CKI;
+		@Thermodynamics	kinetic-mechanism/POLIMI_TOT_NOX_1412.CKT;
+		@Output			kinetics;
+}
+
+Dictionary inlet-mixture
+{
+		@Temperature   	 780 K; 
+		@Pressure      	100 bar;
+		@MoleFractions	  CH4 0.0016 O2 0.0031 N2 0.9953;
+}
+
+Dictionary parametric-analysis
+{
+		@Type temperature;
+		@MinimumValue 790 K;
+		@MaximumValue 840 K;
+		@NumberOfPoints 10;
+		@NumberOfThreads 1;
+}
+
+Dictionary output-options
+{
+	@OutputFolder parametric;
+	@OutputSpecies CH4 O2 CO CO2; 		
+}

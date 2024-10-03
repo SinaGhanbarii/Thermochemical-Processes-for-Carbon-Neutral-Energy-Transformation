@@ -1,0 +1,51 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary SurfaceBatchReactor
+{
+		@KineticsFolder			kinetic-mechanism;
+		
+		@Type				Isothermal-ConstantVolume;
+		
+		@InitialStatus          initial-mixture;
+		
+		@EndTime				24 h;
+		
+		@Volume					100 cm3;
+		@InternalSurfaceArea	10 cm2;
+		
+		@OdeParameters          ode-parameters;
+}
+
+Dictionary initial-mixture
+{
+		@MoleFractions		CH4 0.10		H2 0.90;
+								
+		@Temperature			2500 K;
+		@Pressure		0.2 atm;
+}
+
+Dictionary Surface-DIAMOND
+{
+		@SurfaceFractions	CH(S)	1.00;
+}
+
+Dictionary ode-parameters
+{	
+		@OdeSolver OpenSMOKE;
+		@AbsoluteTolerance 1e-16;
+		@RelativeTolerance 1e-8;
+}
+
+

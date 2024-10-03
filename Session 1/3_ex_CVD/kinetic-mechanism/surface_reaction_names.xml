@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensmoke version="0.1a">
+<reaction-number>
+5
+</reaction-number>
+<reaction-names>
+H+CH(S)=>H2+C(S,R)
+H+C(S,R)=>CH(S)
+CH3+C(S,R)=>CH3(S)+D
+H+CH3(S)=>H2+CH2(S)
+H+CH2(S)=>H2+CH(S)
+</reaction-names>
+</opensmoke>

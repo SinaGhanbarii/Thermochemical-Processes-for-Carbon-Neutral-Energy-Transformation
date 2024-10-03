@@ -1,0 +1,70 @@
+//-----------------------------------------------------------------//
+//     ____                    ______ __  __  ____  _  ________    //
+//    / __ \                  /  ___ |  \/  |/ __ \| |/ /  ____|   //
+//   | |  | |_ __   ___ _ __ |  (___ | \  / | |  | | ' /| |__      //
+//   | |  | | '_ \ / _ \ '_ \ \___  \| |\/| | |  | |  < |  __|     //
+//   | |__| | |_) |  __/ | | |____)  | |  | | |__| | . \| |____    //
+//    \____/| .__/ \___|_| |_|______/|_|  |_|\____/|_|\_\______|   //
+//         | |                                                     //
+//         |_|                                                     //
+//                                                                 //
+//                http://www.opensmoke.polimi.it/                  //
+//             http://creckmodeling.chem.polimi.it/                //
+//-----------------------------------------------------------------//
+
+Dictionary ThermogravimetricAnalysis
+{
+		// Kinetic mechanism and output folder
+		@KineticsFolder			   			kinetics;
+		@OutputFolder			    		Output1;
+		
+		// Simulation time
+		@EndTime							10 min;
+		
+		// Mass transfer options
+		@GlobalMassExchangeCoefficient		3.5e-2 m3/s;
+		@DiffusivityCorrection				true;
+		@ReferenceSpecies					H2O;
+		
+		// Initial conditions
+		@FuelMassFractions			NC7H16 	0.25	NC10H22 0.25 	NC12H26 0.25	H2O 	0.25;
+									
+		@GasStatus          		initial-composition;
+		
+		// Liquid/Vapor equilibrium
+		@LiquidMixture				liquid-properties;
+		@GasMixture					gas-properties;
+		@SpeciesFolder				./LiquidProperties;
+		
+		// Temperature profile
+		@TemperatureProfile			temperature-profile;
+}
+
+Dictionary initial-composition
+{
+		@Temperature   	397.15  K ; 
+		@Pressure      	1. 		atm ;
+		@Moles  		N2 		1.00;
+}
+
+Dictionary liquid-properties
+{
+		@Fugacity	Raoult;
+		@Activity	Ideal;
+}
+
+Dictionary gas-properties
+{
+		@Fugacity	Raoult;
+}
+
+Dictionary temperature-profile
+{
+	@XVariable 	time;
+	@XUnits		min;
+	
+	@YVariable 	temperature;
+	@YUnits		K;
+	
+	@Profile   0    347.15      10   397.15	;
+}

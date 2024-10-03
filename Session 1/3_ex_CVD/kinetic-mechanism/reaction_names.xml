@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensmoke version="0.1a">
+<reaction-number>
+5
+</reaction-number>
+<reaction-names>
+2CH3(+M)=C2H6(+M)
+CH4+H=CH3+H2
+CH3+H(+M)=CH4(+M)
+2H+M=H2+M
+2H+H2=2H2
+</reaction-names>
+</opensmoke>
